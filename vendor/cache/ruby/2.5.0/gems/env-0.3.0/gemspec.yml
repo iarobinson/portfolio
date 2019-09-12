@@ -1,0 +1,16 @@
+name: env
+summary: Provides a Ruby interface to common environment variables
+description:
+  Provides a Ruby interface to common environment variables, used on
+  Windows, Linux, BSD and OSX.
+
+license: MIT
+authors: Postmodern
+email: postmodern.mod3@gmail.com
+homepage: https://github.com/postmodern/env#readme
+has_yard: true
+
+development_dependencies:
+  rubygems-tasks: ~> 0.1
+  rspec: ~> 2.4
+  yard: ~> 0.7
