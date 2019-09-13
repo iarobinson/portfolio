@@ -207,7 +207,6 @@ PLATFORMS
 DEPENDENCIES
   bootsnap (>= 1.1.0)
   bootstrap (= 4.1.1)
-  bundler
   byebug
   capybara (>= 2.15)
   chromedriver-helper
@@ -232,6 +231,3 @@ DEPENDENCIES
 
 RUBY VERSION
    ruby 2.5.1p57
-
-BUNDLED WITH
-   2.0.1
