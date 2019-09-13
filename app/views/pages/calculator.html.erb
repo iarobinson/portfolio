@@ -1,0 +1,126 @@
+<script>
+  $(document).ready(function() {
+    $(".btn").on("click", function() {
+      var buttonPressed = $(this).html();
+      runTheNumbers(buttonPressed);
+    });
+  });
+  var stringyNum = '', previousNum = '', operand = '';
+  var numbers = '1234567890'.split('');
+  var operandSelected = ['add', 'subtract', 'multiply', 'divide'];
+
+  function updateDisplay(stringyNum) {
+    $('th#display').replaceWith('<th colspan="4" id="display"><p align="right">' + stringyNum.substring(0, 10) + '</p></th>');
+  }
+
+  function runTheNumbers(buttonPressed) {
+
+    if (isNum(buttonPressed)) {
+      stringyNum += buttonPressed;
+      updateDisplay(stringyNum);
+    } else if (buttonPressed === 'clear') {
+      stringyNum = '';
+      previousNum = '';
+      operand = '';
+      updateDisplay("0");
+    } else if (buttonPressed === '.' && decimalOK()) {
+      stringyNum += buttonPressed;
+      updateDisplay(stringyNum);
+    } else if (isOperand(buttonPressed)) {
+      if (previousNum === '') {
+        prepCalc(buttonPressed);
+        updateDisplay(previousNum);
+      } else {
+        previousNum = runCalc();
+        stringyNum = '';
+        operand = buttonPressed;
+        updateDisplay(previousNum);
+      }
+    } else if (buttonPressed === 'equals') {
+      stringyNum = runCalc();
+      previousNum = '';
+      operand = '';
+      updateDisplay(stringyNum);
+    } else {
+      updateDisplay(stringyNum);
+    }
+  }
+
+  function runCalc() {
+    var result;
+    if (operand === 'add') {
+      result = parseFloat(previousNum) + parseFloat(stringyNum);
+      return result.toString();
+    } else if (operand === 'subtract') {
+      result = parseFloat(previousNum) - parseFloat(stringyNum);
+      return result.toString();
+    } else if (operand === 'multiply') {
+      result = parseFloat(previousNum) * parseFloat(stringyNum);
+      return result.toString();
+    } else if (operand === 'divide') {
+      result = parseFloat(previousNum) / parseFloat(stringyNum);
+      return result.toString();
+    } else {
+      return previousNum;
+    }
+  }
+
+  function prepCalc(op) {
+    previousNum = stringyNum;
+    stringyNum = '';
+    operand = op;
+  }
+
+  function isOperand(buttonPressed) {
+    return operandSelected.indexOf(buttonPressed) !== -1
+  }
+
+  function isNum(buttonPressed) {
+    return numbers.indexOf(buttonPressed) > -1
+  }
+
+  function decimalOK() {
+    return stringyNum.indexOf('.') === -1
+  }
+</script>
+<div class="container-fluid">
+  <%= raw return_home_button %>
+  <div class="row mt-5">
+    <div class="col-md-8 offset-md-2">
+      <table class="table table-borderless">
+        <th colspan="4" id="display">
+          <center>
+            <p>Display</p>
+          </center>
+        </th>
+        <tr>
+          <th scope="col"><button type="button" class="btn btn-primary btn-block">1</button></th>
+          <th scope="col"><button type="button" class="btn btn-primary btn-block">2</button></th>
+          <th scope="col"><button type="button" class="btn btn-primary btn-block">3</button></th>
+          <th scope="col"><button type="button" class="btn btn-primary btn-block">add</button></th>
+        </tr>
+        <tr>
+          <th><button type="button" class="btn btn-primary btn-block">4</button></th>
+          <th><button type="button" class="btn btn-primary btn-block">5</button></th>
+          <th><button type="button" class="btn btn-primary btn-block">6</button></th>
+          <th><button type="button" class="btn btn-primary btn-block">subtract</button></th>
+        </tr>
+        <tr>
+          <th><button type="button" class="btn btn-primary btn-block">7</button></th>
+          <th><button type="button" class="btn btn-primary btn-block">8</button></th>
+          <th><button type="button" class="btn btn-primary btn-block">9</button></th>
+          <th><button type="button" class="btn btn-primary btn-block">multiply</button></th>
+        </tr>
+        <tr>
+          <th colspan="2"><button type="button" class="btn btn-primary btn-block">0</button></th>
+          <th><button type="button" class="btn btn-primary btn-block">.</button></th>
+          <th><button type="button" class="btn btn-primary btn-block">divide</button></th>
+        </tr>
+        <tr>
+          <th colspan="3"><button type="button" class="btn btn-primary btn-block">clear</button></th>
+          <th ><button type="button" class="btn btn-primary btn-block">equals</button></th>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>

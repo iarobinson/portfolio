@@ -148,7 +148,8 @@
   <div align="middle" class="container-fluid">
     <div class="container">
       <A NAME="about"></a>
-      <h2>Hi, I'm Ian. This is my app.</h2>
+      <h2>Hi, I'm Ian. This is my portfolio web app.</h2>
+      <p>This is a collection of my projects written as a Ruby on Rails application.</p>
       <p>Please see thumbnails below to explore my work.</p>
       <p>I'm currently looking for an opportunity to work with a web development organization.</p>
       <p>If you're interested in working with me, please <a href="https://www.freedompodcasting.com/callian">click here to set up a call</a>.</p>
@@ -161,7 +162,9 @@
 
         <!-- WORK PROJECTS ROW ONE -->
         <div class="col-lg-4 col-md-4 col-sm-4 gallery">
-          <a href="http://quickcheck.ianrobinson.net" target="_blank"><img src="https://ianrobinson.net/wp-content/uploads/2018/01/Ian-Robinson-Programming-Wikipedia-Quick-Check-Tool.jpg" class="img-responsive" alt="A tool to quickly check many wikipedia entries related to a term"></a>
+          <%= link_to quick_check_path do %>
+            <img src="https://ianrobinson.net/wp-content/uploads/2018/01/Ian-Robinson-Programming-Wikipedia-Quick-Check-Tool.jpg" class="img-responsive" alt="A tool to quickly check many wikipedia entries related to a term"></a>
+          <% end %>
           <p>A tool for finding multiple related Wikipedia articles.</p>
         </div>
         <div class="col-lg-4 col-md-4 col-sm-4 gallery">
@@ -169,7 +172,9 @@
           <p>A random quote generator for spamming Hack Reactor founders.</p>
         </div>
         <div class="col-lg-4 col-md-4 col-sm-4 gallery">
-          <a href="http://code.ianrobinson.net/code" target="_blank"><img src="https://ianrobinson.net/wp-content/uploads/2018/01/Ian-Robinson-Programming-Thumbnails-JS-Calculator.jpg" class="img-responsive" alt="The Personal Blog of Ian Robinson"></a>
+          <%= link_to calculator_path do %>
+            <img src="https://ianrobinson.net/wp-content/uploads/2018/01/Ian-Robinson-Programming-Thumbnails-JS-Calculator.jpg" class="img-responsive" alt="The Personal Blog of Ian Robinson">
+          <% end %>
           <p>A mobile responsive JavaScript calculator.</p>
         </div>
       </div>

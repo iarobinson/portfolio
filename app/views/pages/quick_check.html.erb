@@ -1,0 +1,121 @@
+<title>Ian's Wikipedia Search Tool - Quick Check</title>
+<meta name="description" content="A tool for searching Wikipedia built as a way to learn the wiki API">
+<style>
+  h2 {
+    font-family: sans-serif;
+    font-size: 20px;
+  }
+
+  p {
+    font-family: sans-serif;
+    font-size: 16px;
+  }
+
+  input {
+    width: 80%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    text-align: center;
+    border: 1px solid grey;
+    border-radius: 4px;
+    background-color: white;
+    background-position: 10px 10px;
+    background-repeat: no-repeat;
+    padding-left: 40px;
+  }
+
+  input[type=text] {
+    font-family: sans-serif;
+    font-size: 16px;
+  }
+
+  /* Thanks to W3Schools for Button CSS
+  https://www.w3schools.com/css/tryit.asp?filename=trycss_buttons_animate1
+  */
+
+  button {
+    display: inline-block;
+    border-radius: 4px;
+    background-color: white;
+    border: none;
+    color: grey;
+    text-align: center;
+    font-size: 14px;
+    padding: 5px;
+    cursor: pointer;
+    margin: 5px;
+  }
+
+  a {
+    color: red;
+    font-weight: bold;
+  }
+
+  /*Table Styling*/
+
+  th, td {
+    padding: 10px;
+    text-align: left;
+  }
+</style>
+
+<script>
+  $(document).ready(function() {
+
+    $('.input').on('keyup', function() {
+      var term = $('.input').val();
+      var remoteUrlWithOrigin = "https://en.wikipedia.org/w/api.php?action=opensearch&search=" + term + "&format=json&callback=?";
+
+      $.ajax( {
+          url: remoteUrlWithOrigin,
+          type: 'GET',
+          async: false,
+          dataType: 'json',
+          success: function(data) {
+            $('.searchDisplay').html('');
+            for (var i = data[1].length - 1; i >= 0; i -= 1) {
+              $('.searchDisplay').prepend("<tr><td><a target= '_blank' href= " + data[3][i] + ">" + data[1][i] + "</a></td><td>" + data[2][i] + "</td></tr>");
+            }
+          },
+
+          error: function(errorMessage) {
+            alert("AJAX function error by Ian");
+          }
+      } );
+    });
+
+    $('.search').on('click', function() {
+      var searchTerm = "Wikipedia on " + $('.input').val();
+      $('.searchDisplay').text(searchTerm);
+    });
+
+    $('.random').on('click', function() {
+      var randomCopy = "Ok, here is something random."
+      $('.searchDisplay').text(randomCopy);
+    });
+  });
+</script>
+
+<div class="container-fluid">
+  <%= return_home_button %>
+  <div class="row">
+    <div class="col-8 offset-2">
+      <center>
+        <h2>Quick Check <a target="_blank" href="https://en.wikipedia.org/wiki/Special:Random"><button class="button random" style="vertical-align:middle">Find Something Random</button></a></h2>
+        <p>
+          Type your query below for immediate results.
+        </p>
+        <div>
+          <input class="input" type="text"></input>
+        </div>
+        <table style = "width:60%" class="w3-table-all w3-hoverable">
+          <p class='searchDisplay'>
+        </table>
+      </center>
+    </div>
+  </div>
+</div>
+<script>
+  var searchTerm = document.createElement("userSearch");
+</script>
