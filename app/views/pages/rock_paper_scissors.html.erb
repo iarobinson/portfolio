@@ -1,0 +1,72 @@
+<script>
+  function computerPlay(playerSelection, computerSelection) {
+    let playerMove = playerSelection.toLowerCase();
+    let computerMove = computerSelection.toLowerCase();
+
+    if (checkValidSelection(playerMove, computerMove)) {
+      return "You have formatted your request incorrectly."
+    }
+
+    if (playerMove == computerMove) {
+      return "Draw!";
+    } else if (playerMove == 'rock' && computerMove == 'scissors') {
+      return "You win! Rock beats scissors.";
+    } else if (playerMove == 'rock' && computerMove == 'paper') {
+      return "You lose! Rock beats paper.";
+    } else if (playerMove == 'paper' && computerMove == 'rock') {
+      return "You win! Paper beats rock.";
+    } else if (playerMove == 'paper' && computerMove == 'scissors') {
+      return "You lose! Paper beats scissors.";
+    } else if (playerMove == 'scissors' && computerMove == 'paper') {
+      return "You win! Scissors beats paper.";
+    } else if (playerMove == 'scissors' && computerMove == 'rock') {
+      return "You lose! Rock beats scissors.";
+    } else {
+      return "No one knows what happened. Never Surrender.";
+    }
+  }
+
+  function randomRPS() {
+    let options = ["Rock", "Paper", "Scissors"];
+    return options[Math.floor(Math.random() * 3)];
+  }
+
+  function checkValidSelection() {
+    for (let arg in arguments) {
+      if (arguments[arg] != "rock" || arguments[arg] != "paper" || arguments[arg] != "scissors") {
+        return false;
+      } else {
+        return true;
+      }
+    }
+  }
+
+  function goRock() {
+    addResult("Rock");
+  }
+
+  function goPaper() {
+    addResult("Paper");
+  }
+
+  function goScissors() {
+    addResult("Scissors");
+  }
+
+  function addResult(stringResult) {
+    let computerChoice = randomRPS();
+    let gameResult = "You chose " + stringResult + " and the computer chose " +
+                     computerChoice + ". " + computerPlay(stringResult, computerChoice);
+    let ul = document.getElementById("result");
+    let li = document.createElement("li");
+    li.innerHTML = gameResult;
+    ul.prepend(li);
+  }
+</script>
+<%= render "layouts/home_link" %>
+<h1>Rock Paper Scissors</h1>
+<button onClick="goRock()">Rock</button>
+<button onClick="goPaper()">Paper</button>
+<button onClick="goScissors()">Scissors</button>
+<br><br>
+<ul id="result"></ul>

@@ -1,3 +1,103 @@
 // Place all the styles related to the pages controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+p, body {
+  font-family: 'Source Serif Pro', serif;
+  font-size: 20px;
+  line-height: 1.4em;
+  color: #000
+}
+
+h1, h2, h3, h4, h5, ul {
+  font-family: 'Montserrat', sans-serif;
+  padding: 20px 20px 20px 20px;
+}
+
+h1 {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+a img {
+  padding: 10px 10px 10px 10px;
+}
+
+.btn {
+  border-radius: 0;
+  text-transform: uppercase;
+}
+
+.btn-primary:hover {
+    color: #fff;
+}
+
+.btn-twitter:hover {
+    color: #fff;
+    background-color: #3399ff;
+}
+
+.btn-twitter {
+  color: #3399ff;
+}
+
+.btn-facebook:hover {
+    color: #fff;
+    background-color: #3b5998;
+    border-color: #3b5998;
+}
+
+.btn-facebook {
+  color: #3b5998;
+}
+
+.btn-instagram:hover {
+    color: #fff;
+    background-color: #ed4956;
+}
+
+.btn-instagram {
+  color: #ed4956;
+}
+
+.btn-podcast:hover {
+    color: #fff;
+    background-color: #9966cc;
+    font-color: white;
+}
+
+.btn-podcast {
+  color: #9966cc;
+}
+
+.btn-youtube:hover {
+    color: #fff;
+    background-color: #ff3300;
+    font-color: white;
+}
+
+.btn-youtube {
+  color: #ff3300;
+}
+
+.btn-github:hover {
+  color: white;
+  background-color: #333333;
+  font-color: white;
+}
+
+.btn-github {
+  color: #333333;
+}
+
+.socialNav {
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+.gallery img:hover {
+    opacity: 0.4;
+}
+
+.navbar-default{
+  margin: 20px 40px 0px;
+}

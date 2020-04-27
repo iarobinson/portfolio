@@ -11,4 +11,7 @@ class PagesController < ApplicationController
 
   def random_quote
   end
+
+  def jockoclock
+  end
 end

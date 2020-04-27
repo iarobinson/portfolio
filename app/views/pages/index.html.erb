@@ -1,155 +1,30 @@
-<style>
-  p, body {
-    font-family: 'Source Serif Pro', serif;
-    font-size: 20px;
-    line-height: 1.4em;
-    color: #000
-  }
-
-  h1, h2, h3, h4, h5, ul {
-    font-family: 'Montserrat', sans-serif;
-    padding: 20px 20px 20px 20px;
-  }
-
-  h1 {
-    padding-top: 20px;
-    padding-bottom: 20px;
-  }
-
-  a img {
-    padding: 10px 10px 10px 10px;
-  }
-
-  .btn {
-    border-radius: 0;
-    text-transform: uppercase;
-  }
-
-  .btn-primary:hover {
-      color: #fff;
-  }
-
-  .btn-twitter:hover {
-      color: #fff;
-      background-color: #3399ff;
-  }
-
-  .btn-twitter {
-    color: #3399ff;
-  }
-
-  .btn-facebook:hover {
-      color: #fff;
-      background-color: #3b5998;
-      border-color: #3b5998;
-  }
-
-  .btn-facebook {
-    color: #3b5998;
-  }
-
-  .btn-instagram:hover {
-      color: #fff;
-      background-color: #ed4956;
-  }
-
-  .btn-instagram {
-    color: #ed4956;
-  }
-
-  .btn-podcast:hover {
-      color: #fff;
-      background-color: #9966cc;
-      font-color: white;
-  }
-
-  .btn-podcast {
-    color: #9966cc;
-  }
-
-  .btn-youtube:hover {
-      color: #fff;
-      background-color: #ff3300;
-      font-color: white;
-  }
-
-  .btn-youtube {
-    color: #ff3300;
-  }
-
-  .btn-github:hover {
-    color: white;
-    background-color: #333333;
-    font-color: white;
-  }
-
-  .btn-github {
-    color: #333333;
-  }
-
-  .socialNav {
-      padding-top: 50px;
-      padding-bottom: 50px;
-  }
-
-  .gallery img:hover {
-      opacity: 0.4;
-  }
-
-  #ianwrap {
-      background: url(https://ianrobinson.net/wp-content/uploads/2018/05/ian.jpg) no-repeat center top;
-      margin-top: -20px;
-      padding-top: 10px;
-      text-align: center;
-      background-attachment: relative;
-      background-position: center center;
-      min-height: 600px;
-      width: 100%;
-      background-size: cover;
-  }
-
-  .navbar-default{
-    margin: 20px 40px 0px;
-  }
-</style>
-
-
-<div id="ianwrap">
-  <div class="container">
-    <ul class="nav justify-content-end">
-      <li class="nav-item"><a class="nav-link"href="/">home</a></li>
-      <li class="nav-item"><a class="nav-link"href="#about">about</a></li>
-      <li class="nav-item"><a class="nav-link"href="#work">work</a></li>
-    </ul>
-    <div class="row">
-  	  <div class="col-lg-6 col-lg-offset-3">
-  		</div>
-  	</div>
-  </div>
-</div>
-
 <div class="container">
-
   <div class="row">
     <div class="col-6 offset-3">
-      <A NAME="about"></a>
-      <h2 class="text-center">Hi, I'm Ian.</h2>
+      <h2 class="text-center">
+        <%= image_tag "ian.jpeg", width: "50px" %>
+        Hi, I'm Ian.
+      </h2>
     </div>
     <div class="col-8 offset-2">
       <p>This is my portfolio web app.</p>
-      <p>This is a collection of my projects written as a Ruby on Rails application.</p>
-      <p>Please see thumbnails below to explore my work.</p>
-      <p>I'm currently looking for an opportunity to work with a web development organization.</p>
-      <p>If you're interested in working with me, please <a href="https://www.freedompodcasting.com/callian">click here to set up a call</a>.</p>
+      <p>This is a collection of my favorite projects.
+        These were created over the past few years of learning to code.
+      </p>
+      <p>
+        Some projects work better for users who login in. If you want to see those projects, please
+        <%= link_to "sign in", new_user_session_path %> or
+        <%= link_to "sign up", new_user_registration_path %>.
+      </p>
+      <p>Please check out the thumbnails below to explore my work.</p>
     </div>
   </div>
 
   <div class="row">
-    <h2>Code Projects</h2>
+    <h2>Projects:</h2>
   </div>
   <div class="row">
     <div class="row centered mt mb">
-      <A NAME="work"></a>
       <!-- WORK PROJECTS ROW ONE -->
       <div class="col-md-4 col-sm-4 gallery">
         <%= link_to quick_check_path do %>
@@ -174,15 +49,21 @@
 
   <div class="row">
     <div class="col-md-4 col-sm-4 gallery">
-      <a href="http://jockoclock.ianrobinson.net" target="_blank"><img src="https://ianrobinson.net/wp-content/uploads/2018/01/Ian-Robinson-Programming-Thumbnails-Jocko-Clock.jpg" class="img-fluid" alt="A clock that gets Jocko Willink to help you stop procrastinating"></a>
+      <%= link_to jockoclock_path do %>
+        <img src="https://ianrobinson.net/wp-content/uploads/2018/01/Ian-Robinson-Programming-Thumbnails-Jocko-Clock.jpg" class="img-fluid" alt="A clock that gets Jocko Willink to help you stop procrastinating">
+      <% end %>
       <p>Jocko Clock is a Pomodoro clock which helps you eliminate procrastination featuring the voice of Jocko Willink.</p>
     </div>
     <div class="col-md-4 col-sm-4 gallery">
-      <a href="https://code.ianrobinson.net/heart/" target="_blank"><img src="https://ianrobinson.net/wp-content/uploads/2018/06/Ian-Robinson-Programming-Thumbnails-heart.jpg" class="img-fluid" alt="A Podcast for the Location Independent"></a>
+      <%= link_to "heart/", target: "_blank" do %>
+        <img src="https://ianrobinson.net/wp-content/uploads/2018/06/Ian-Robinson-Programming-Thumbnails-heart.jpg" class="img-fluid" alt="A Podcast for the Location Independent">
+      <% end %>
       <p>A throbbing heart.</p>
     </div>
     <div class="col-md-4 col-sm-4 gallery">
-      <a href="http://ttt.ianrobinson.net" target="_blank"><img src="https://ianrobinson.net/wp-content/uploads/2018/02/Ian-Robinson-Programming-Thumbnails-tic-toc-toe.jpg" class="img-fluid" alt="A simple Tic Tac Toe Game"></a>
+      <a href="http://ttt.ianrobinson.net" target="_blank">
+        <img src="https://ianrobinson.net/wp-content/uploads/2018/02/Ian-Robinson-Programming-Thumbnails-tic-toc-toe.jpg" class="img-fluid" alt="A simple Tic Tac Toe Game">
+      </a>
       <p>This is just a simple game of Tic Tac Toe written in JavaScript, HTML and CSS.</p>
     </div>
   </div>
@@ -192,24 +73,18 @@
     <h2>Business and Media Projects</h2>
   </div>
   <div class="row">
-    <div class="col-md-4 col-sm-4 gallery">
+    <div class="col-md-6 gallery">
       <a href="https://www.freedompodcasting.com" target="_blank">
         <img src="https://ianrobinson.net/wp-content/uploads/2016/07/Ian-Robinson-Programming-Thumbnails-Freedom-Podcasting.png" class="img-fluid" alt="Excellent Podcast Production Company">
       </a>
       <p>We are a company offering podcast production services to clients since 2011.</p>
     </div>
-    <div class="col-md-4 col-sm-4 gallery">
+    <div class="col-md-6 gallery">
       <a href="https://www.ianrobinson.net" target="_blank">
         <img src="https://ianrobinson.net/wp-content/uploads/2016/07/Ian-Robinson-Programming-Thumbnails-Blog.png" class="img-fluid" alt="The Personal Blog of Ian Robinson">
       </a>
-      <p>My personal blog with wide ranging topics:</p>
+      <p>My personal blog with wide ranging topics from:</p>
       <p><font size="3"><em>house building, learning to code, book notes, travel ideas, film making, cryptocurrency and much more.</em></font></p>
-    </div>
-    <div class="col-md-4 col-sm-4 gallery">
-      <a href="https://loveaffairtravel.com" target="_blank">
-        <img src="https://ianrobinson.net/wp-content/uploads/2016/07/Ian-Robinson-Programming-Thumbnails-Love-Affair-Travel.png" class="img-fluid" alt="A Podcast for the Location Independent">
-      </a>
-      <p>A podcast I hosted related to adventure travel and location independent business.</p>
     </div>
   </div>
 

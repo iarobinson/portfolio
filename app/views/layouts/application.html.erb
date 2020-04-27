@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <title><%= meta_title %></title>
     <meta name="description" content="<%= meta_description %>">
@@ -9,8 +9,10 @@
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-
   <body>
+    <% unless current_user.nil? %>
+      <%= render "layouts/logged_in_user_options" %>
+    <% end %>
     <%= yield %>
   </body>
 </html>
