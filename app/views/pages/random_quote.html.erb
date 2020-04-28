@@ -1,44 +1,40 @@
 <style>
-  body {
-    padding: 2rem 0 0 2rem;
+  .flex-container {
+    padding-top: 40px;
+    display: flex;
   }
 
-  .jumbotron {
-    background-color: white;
+  .flex-container > div {
+    width: 100%;
+    margin: 10px;
+    text-align: center;
+    line-height: 30px;
+    font-size: 30px;
+    justify-content: center;
   }
 
-  #quote-box {
-    margin: auto;
-  }
-
-  #text {
-    font-size: 2rem;
-  }
-
-  #author {
-    /* margin-top: 1em; */
-    font-size: 3rem;
-    text-align: right;
-  }
-
-  #buttons {
-    position: absolute;
-    bottom: 1rem;
+  #spacer {
+    width: 20%;
   }
 </style>
 
-<div class="container">
-  <div class="jumbotron">
-    <div id="quote-box">
-      <div id="text">Your quote will appear here</div>
-      <div id="author"></div>
-      <div id="buttons">
-        <a id="new-quote" class="btn btn-lg btn-success">New Quote</a>
-        <a id="tweet-quote" class="btn btn-lg btn-primary" href="#" target="_blank">Tweet Quote</a>
-        <%= link_to "Back", root_path, class: "btn btn-lg btn-danger" %>
-      </div>
-    </div>
+<div class="flex-container">
+  <div id="spacer"></div>
+  <div>
+    <div id="text">Your quote will appear here</div>
+    <div id="author"></div>
   </div>
+  <div id="spacer"></div>
+</div>
+
+<div class="flex-container">
+  <div></div>
+  <div id="buttons">
+    <a id="new-quote" class="btn btn-block btn-success">New Quote</a>
+    <a id="tweet-quote" class="btn btn-block btn-primary" href="#" target="_blank">Tweet Quote</a>
+    <%= link_to "Back", root_path, class: "btn btn-block btn-danger" %>
+  </div>
+  <div></div>
 </div>
 
 
@@ -63,7 +59,6 @@
   function genRandQuote() {
 
     var randQuote = QUOTES[ Math.floor( Math.random() * (QUOTES.length) ) ];
-    console.log(randQuote);
     $("#text").html(randQuote.text);
     $("#author").html(randQuote.source);
     $("#tweet-quote").attr("href", stringToClickToTweetURL('"' + randQuote.text + '" - ' + randQuote.source));
