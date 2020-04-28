@@ -25,22 +25,21 @@
   </div>
   <div class="row">
     <div class="row centered mt mb">
-      <!-- WORK PROJECTS ROW ONE -->
       <div class="col-md-4 col-sm-4 gallery">
         <%= link_to quick_check_path do %>
-          <img src="https://ianrobinson.net/wp-content/uploads/2018/01/Ian-Robinson-Programming-Wikipedia-Quick-Check-Tool.jpg" class="img-fluid" alt="A tool to quickly check many wikipedia entries related to a term">
+          <%= image_tag "project_thumbnails/wikipedia-quick-check-tool.jpg", class: "img-fluid" %>
         <% end %>
         <p>A tool for finding multiple related Wikipedia articles.</p>
       </div>
       <div class="col-md-4 col-sm-4 gallery">
         <%= link_to random_quote_path do %>
-          <img src="https://ianrobinson.net/wp-content/uploads/2018/01/Ian-Robinson-Programming-Thumbnails-Random-Tweet-Generator.jpg" class="img-fluid" alt="A Podcast for the Location Independent">
+          <%= image_tag "project_thumbnails/tweet-generator.jpg", class: "img-fluid" %>
         <% end %>
         <p>A random quote generator for spamming Hack Reactor founders.</p>
       </div>
       <div class="col-md-4 col-sm-4 gallery">
         <%= link_to calculator_path do %>
-          <img src="https://ianrobinson.net/wp-content/uploads/2018/01/Ian-Robinson-Programming-Thumbnails-JS-Calculator.jpg" class="img-fluid" alt="The Personal Blog of Ian Robinson">
+          <%= image_tag "project_thumbnails/js-calculator.jpg", class: "img-fluid" %>
         <% end %>
         <p>A mobile responsive JavaScript calculator.</p>
       </div>
@@ -50,60 +49,43 @@
   <div class="row">
     <div class="col-md-4 col-sm-4 gallery">
       <%= link_to jockoclock_path do %>
-        <img src="https://ianrobinson.net/wp-content/uploads/2018/01/Ian-Robinson-Programming-Thumbnails-Jocko-Clock.jpg" class="img-fluid" alt="A clock that gets Jocko Willink to help you stop procrastinating">
+        <%= image_tag "project_thumbnails/jocko-clock.jpg", class: "img-fluid", alt: "A clock that gets Jocko Willink to help you stop procrastinating" %>
       <% end %>
       <p>Jocko Clock is a Pomodoro clock which helps you eliminate procrastination featuring the voice of Jocko Willink.</p>
     </div>
     <div class="col-md-4 col-sm-4 gallery">
       <%= link_to "heart/", target: "_blank" do %>
-        <img src="https://ianrobinson.net/wp-content/uploads/2018/06/Ian-Robinson-Programming-Thumbnails-heart.jpg" class="img-fluid" alt="A Podcast for the Location Independent">
+        <%= image_tag "project_thumbnails/heart.jpg", class: "img-fluid", alt: "A love heart in CSS" %>
       <% end %>
       <p>A throbbing heart.</p>
     </div>
     <div class="col-md-4 col-sm-4 gallery">
       <a href="http://ttt.ianrobinson.net" target="_blank">
-        <img src="https://ianrobinson.net/wp-content/uploads/2018/02/Ian-Robinson-Programming-Thumbnails-tic-toc-toe.jpg" class="img-fluid" alt="A simple Tic Tac Toe Game">
+        <%= image_tag "project_thumbnails/tic-toc-toe.jpg", class: "img-fluid", alt: "A simple Tic Tac Toe Game" %>
       </a>
       <p>This is just a simple game of Tic Tac Toe written in JavaScript, HTML and CSS.</p>
     </div>
   </div>
 
   <div class="row">
-    <A NAME="work"></a>
-    <h2>Business and Media Projects</h2>
+    <h2>External Links</h2>
   </div>
   <div class="row">
     <div class="col-md-6 gallery">
       <a href="https://www.freedompodcasting.com" target="_blank">
-        <img src="https://ianrobinson.net/wp-content/uploads/2016/07/Ian-Robinson-Programming-Thumbnails-Freedom-Podcasting.png" class="img-fluid" alt="Excellent Podcast Production Company">
+        <%= image_tag "project_thumbnails/freedom-podcasting.png", class: "img-fluid", alt: "A Professional Podcast Production company" %>
       </a>
       <p>We are a company offering podcast production services to clients since 2011.</p>
     </div>
     <div class="col-md-6 gallery">
       <a href="https://www.ianrobinson.net" target="_blank">
-        <img src="https://ianrobinson.net/wp-content/uploads/2016/07/Ian-Robinson-Programming-Thumbnails-Blog.png" class="img-fluid" alt="The Personal Blog of Ian Robinson">
+        <%= image_tag "project_thumbnails/personal-blog.png", class: "img-fluid", alt: "My personal blog - a study of art, enterprise and entrepreneurship." %>
       </a>
       <p>My personal blog with wide ranging topics from:</p>
       <p><font size="3"><em>house building, learning to code, book notes, travel ideas, film making, cryptocurrency and much more.</em></font></p>
     </div>
   </div>
 
-  <div class="row socialNav" id="social">
-    <div class="col">
-      <a class="btn btn-block btn-twitter" href="https://www.twitter.com/independentian" role="button" target="_blank">twitter</a></li>
-    </div>
-    <div class="col">
-      <a class="btn btn-block btn-facebook" href="https://www.facebook.com/independentian" role="button" target="_blank">facebook</a></li>
-    </div>
-    <div class="col">
-      <a class="btn btn-block btn-instagram" href="https://www.instagram.com/independentian" role="button" target="_blank">instagram</a></li>
-    </div>
-    <div class="col">
-      <a class="btn btn-block btn-youtube" href="https://www.youtube.com/user/irobinson1984" role="button" target="_blank">youtube</a></li>
-    </div>
-    <div class="col">
-      <a class="btn btn-block btn-github" href="https://github.com/iarobinson" role="button" target="_blank">github</a></li>
-    </div>
-  </div>
+  <%= render "layouts/social_media_buttons" %>
 
 </div>

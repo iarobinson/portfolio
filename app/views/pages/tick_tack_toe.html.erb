@@ -1,0 +1,300 @@
+<style>
+  td {
+    border: 2px solid #393939;
+    height: 100px;
+    width: 100px;
+    text-align: center;
+    vertical-align: middle;
+    font-family: sans-serif;
+    font-size: 100px;
+    cursor: pointer;
+  }
+
+  table {
+    border-collapse: collapse;
+    position: absolute;
+    left: 50%;
+    margin-left: -155px;
+    top: 50px;
+  }
+
+  table tr:first-child td {
+    border-top: 0;
+  }
+
+  table tr:last-child td {
+    border-bottom: 0;
+  }
+
+  table tr td:first-child {
+    border-left: 0;
+  }
+
+  table tr td:last-child {
+    border-right: 0;
+  }
+
+  p {
+    font-size: 20px;
+  }
+
+  .endgame {
+    display: none;
+    width: 200px;
+    top: 120px;
+    background-color: #d64c37;
+    position: absolute;
+    left: 50%;
+    margin-left: -100px;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    text-align: center;
+    border-radius: 5px;
+    color: #f4f4f4;
+    font-size: 2em;
+  }
+
+  .startGame {
+    /* display: none; */
+    width: 200px;
+    top: 120px;
+    background-color: #d64c37;
+    position: absolute;
+    left: 50%;
+    margin-left: -100px;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    text-align: center;
+    border-radius: 5px;
+    color: #f4f4f4;
+    font-size: 2em;
+
+  }
+</style>
+
+<table>
+  <tr>
+    <td class="cell" id="0"></td>
+    <td class="cell" id="1"></td>
+    <td class="cell" id="2"></td>
+  </tr>
+  <tr>
+    <td class="cell" id="3"></td>
+    <td class="cell" id="4"></td>
+    <td class="cell" id="5"></td>
+  </tr>
+  <tr>
+    <td class="cell" id="6"></td>
+    <td class="cell" id="7"></td>
+    <td class="cell" id="8"></td>
+  </tr>
+</table>
+
+<div class="endgame">
+  <div class="text"></div>
+  <button onclick="startGame()">Restart Game</button>
+</div>
+
+<div class="startGame">
+  <div>
+    <h5>Welcome.</h5>
+    <p>You will not win.</p>
+    <button onclick="startWithX()">Play as X</button>
+    <button onclick="startWithO()">Play as O</button>
+  </div>
+</div>
+
+<script>
+  /*
+  Big thanks to Beau Carnes for writing the core of this.
+  https://youtu.be/P2TcQ3h0ipQ
+  Everything I've built here is standing on the shoulders of Beau.
+  The MIT License (MIT)
+  Copyright (c) 2018 Ian Robinson
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to deal
+  in the Software without restriction, including without limitation the rights
+  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+  copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+  THE SOFTWARE.
+  */
+
+
+  var originBoard = [];
+  var huPlayer = 'O';
+  var aiPlayer = 'X';
+
+  function startWithX() {
+    huPlayer = 'X';
+    aiPlayer = 'O';
+    document.querySelector(".startGame").style.display = "none";
+    startGame();
+  }
+
+  function startWithO() {
+    document.querySelector(".startGame").style.display = "none";
+    startGame();
+  }
+
+  var winCombos = [
+    [0, 1, 2],
+    [3, 4, 5],
+    [6, 7, 8],
+    [0, 3, 6],
+    [1, 4, 7],
+    [2, 5, 8],
+    [0, 4, 8],
+    [6, 4, 2]
+  ];
+
+  var cells = document.querySelectorAll('.cell');
+
+  function startGame() {
+    document.querySelector(".endgame").style.display = "none";
+    originBoard = Array.from(Array(9).keys());
+
+    for (var i = 0; i < cells.length; i += 1) {
+      cells[i].innerText = '';
+      cells[i].style.removeProperty('background-color');
+      cells[i].addEventListener('click', turnClick, false);
+    }
+  }
+
+  function turnClick(square) {
+    // Make sure you can't click a square that has been clicked
+    if (typeof originBoard[square.target.id] == 'number') {
+      // Turn logic
+      turn(square.target.id, huPlayer);
+
+      // First we want to check if game is a tie
+      if (!checkTie()) turn(bestSpot(), aiPlayer);
+    }
+  }
+
+  function turn(squareId, player) {
+    originBoard[squareId] = player;
+    document.getElementById(squareId).innerText = player;
+    let gameWon = checkWin(originBoard, player);
+    if (gameWon) gameOver(gameWon);
+  }
+
+  // Determine Winner
+  function checkWin(board, player) {
+    let plays = board.reduce((a, e, i) => (e === player) ? a.concat(i) : a, []);
+    let gameWon = null;
+    for (let [index, win] of winCombos.entries()) {
+      if (win.every(elem => plays.indexOf(elem) > -1)) {
+        gameWon = { index: index, player: player };
+        break;
+      }
+    }
+
+    return gameWon;
+  }
+
+  function gameOver(gameWon) {
+    for (let index of winCombos[gameWon.index]) {
+      document.getElementById(index).style.backgroundColor =
+        gameWon.player == huPlayer ? "#6e4df5" : "#d64c37";
+    }
+
+    for (var i = 0; i < cells.length; i += 1) {
+      cells[i].removeEventListener('click', turnClick, false);
+    }
+
+    declareWinner(gameWon.player == huPlayer ? "You win." : "You lose.");
+  }
+
+  // AI and Winner Notification
+  function declareWinner(who) {
+    document.querySelector(".endgame").style.display = "block";
+    document.querySelector(".endgame .text").innerText = who;
+  }
+
+  function emptySquares() {
+    return originBoard.filter(s => typeof s == 'number')
+  }
+
+  function bestSpot() {
+    return miniMax(originBoard, aiPlayer).index;
+    // // Overly simple. Computer just picks first avaliable position
+    // return emptySquares()[0];
+  }
+
+  function checkTie() {
+    if (emptySquares().length == 0) {
+      for (var i = 0; i < cells.length; i += 1) {
+        cells[i].style.backgroundColor = "#e455e1";
+        cells[i].removeEventListener('click', turnClick, false);
+      }
+      declareWinner("Tie Game.");
+
+      return true;
+    }
+
+    return false;
+  }
+
+  // Logic for Unbeatable AI
+  function miniMax(newBoard, player) {
+    var avaliableSpots = emptySquares(newBoard);
+
+    if (checkWin(newBoard, player)) {
+      return { score: -10 };
+    } else if (checkWin(newBoard, aiPlayer)) {
+      return { score: 10 };
+    } else if (avaliableSpots.length === 0) {
+      return { score: 0 };
+    }
+
+    var moves = [];
+
+    for (var i = 0; i < avaliableSpots.length; i += 1) {
+      var move = {};
+      move.index = newBoard[avaliableSpots[i]];
+      newBoard[avaliableSpots[i]] = player;
+
+      if (player == aiPlayer) {
+        var result = miniMax(newBoard, huPlayer);
+        move.score = result.score;
+      } else {
+        var result = miniMax(newBoard, aiPlayer);
+        move.score = result.score;
+      }
+
+      newBoard[avaliableSpots[i]] = move.index;
+      moves.push(move);
+    }
+
+    var bestMove;
+    if (player === aiPlayer) {
+      var bestScore = -10000;
+
+      for (var i = 0; i < moves.length; i += 1) {
+        if (moves[i].score > bestScore) {
+          bestScore = moves[i].score;
+          bestMove = i;
+        }
+      }
+    } else {
+      var bestScore = 10000;
+      for (var i = 0; i < moves.length; i += 1) {
+        if (moves[i].score < bestScore) {
+          bestScore = moves[i].score;
+          bestMove = i;
+        }
+      }
+    }
+
+    return moves[bestMove];
+  }
+</script>

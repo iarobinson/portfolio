@@ -3,7 +3,13 @@ class PagesController < ApplicationController
   def calculator
   end
 
+  def heart
+  end
+
   def index
+  end
+
+  def jockoclock
   end
 
   def quick_check
@@ -12,6 +18,6 @@ class PagesController < ApplicationController
   def random_quote
   end
 
-  def jockoclock
+  def tick_tack_toe
   end
 end
