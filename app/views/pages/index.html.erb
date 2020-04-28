@@ -54,15 +54,15 @@
       <p>Jocko Clock is a Pomodoro clock which helps you eliminate procrastination featuring the voice of Jocko Willink.</p>
     </div>
     <div class="col-md-4 col-sm-4 gallery">
-      <%= link_to "heart/", target: "_blank" do %>
+      <%= link_to heart_path do %>
         <%= image_tag "project_thumbnails/heart.jpg", class: "img-fluid", alt: "A love heart in CSS" %>
       <% end %>
       <p>A throbbing heart.</p>
     </div>
     <div class="col-md-4 col-sm-4 gallery">
-      <a href="http://ttt.ianrobinson.net" target="_blank">
+      <%= link_to tick_tack_toe_path do %>
         <%= image_tag "project_thumbnails/tic-toc-toe.jpg", class: "img-fluid", alt: "A simple Tic Tac Toe Game" %>
-      </a>
+      <% end %>
       <p>This is just a simple game of Tic Tac Toe written in JavaScript, HTML and CSS.</p>
     </div>
   </div>

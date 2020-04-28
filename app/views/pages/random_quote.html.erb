@@ -18,7 +18,8 @@
   }
 </style>
 
-  <%= return_home_button %>
+<%= return_home_button %>
+
 <div class="flex-container">
   <div id="spacer"></div>
   <div>
@@ -31,9 +32,8 @@
 <div class="flex-container">
   <div></div>
   <div id="buttons">
-    <a id="new-quote" class="btn btn-block btn-success">New Quote</a>
+    <a id="new-quote" class="btn btn-block btn-success" onclick="genRandQuote()">New Quote</a>
     <a id="tweet-quote" class="btn btn-block btn-primary" href="#" target="_blank">Tweet Quote</a>
-    <%= link_to "Back", root_path, class: "btn btn-block btn-danger" %>
   </div>
   <div></div>
 </div>
@@ -353,7 +353,7 @@
     source: "Michelle Obama"
   }, {
     id: 69,
-    text: "Nothing is impossible; the word itself says ‘I’m possible’!",
+    text: "Nothing is impossible. The word itself says ‘I’m possible’!",
     source: "Audrey Hepburn"
   }, {
     id: 70,
