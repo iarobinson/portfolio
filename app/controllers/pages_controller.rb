@@ -18,6 +18,9 @@ class PagesController < ApplicationController
   def random_quote
   end
 
+  def roulette_wheel_consecutive_count
+  end
+
   def tick_tack_toe
   end
 end

@@ -1,1 +1,16 @@
-<%= link_to "hello", "/#", class: "btn btn-primary" %>
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 offset-md-3">
+      <div class="list-group">
+        <li class="list-group-item">
+          Users:
+        </li>
+        <% @users.each do |user| %>
+          <%= link_to user, class: "list-group-item list-group-item-action" do %>
+            <%= user.email %>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

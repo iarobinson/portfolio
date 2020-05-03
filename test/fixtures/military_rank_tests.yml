@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  result: fail
+  user: ian
+  points: 6
+
+two:
+  result: pass
+  user: ian
+  points: 10

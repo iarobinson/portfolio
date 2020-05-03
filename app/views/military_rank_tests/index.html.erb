@@ -1,0 +1,60 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 offset-md-3 py-3">
+      <p id="notice"><%= notice %></p>
+      <%= link_to 'Take the Test', new_military_rank_test_path, class: "btn btn-block btn-primary" %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <div class="card">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Result</th>
+              <th>Points</th>
+              <th>Date</th>
+              <th colspan="3">Manage</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <% @military_rank_tests.each do |military_rank_test| %>
+              <tr>
+                <td>
+                  <%= military_rank_test.result %>
+                </td>
+                <td>
+                  <%= military_rank_test.points %>
+                </td>
+                <td>
+                  <%= military_rank_test.updated_at %>
+                </td>
+                <td>
+                  <%= link_to 'Show', military_rank_test, class: "btn btn-block btn-primary" %>
+                </td>
+                <td>
+                  <%= link_to 'Edit', edit_military_rank_test_path(military_rank_test), class: "btn btn-block btn-primary" %>
+                </td>
+                <td>
+                  <%= link_to 'Destroy', military_rank_test, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-block btn-primary" %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-4">
+      <%= image_tag "military_rank_test/military_rank_test_jr_enlisted.jpg", class: "img-fluid" %>
+    </div>
+    <div class="col-md-4">
+      <%= image_tag "military_rank_test/military_rank_test_sr_enlisted.jpg", class: "img-fluid" %>
+    </div>
+    <div class="col-md-4">
+      <%= image_tag "military_rank_test/military_rank_test_officer.jpg", class: "img-fluid" %>
+    </div>
+  </div>
+</div>

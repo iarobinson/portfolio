@@ -1,0 +1,100 @@
+<script>
+  function randomRedOrBlack() {
+    var randomResult = ((Math.floor(Math.random() * 10)) + 1) % 2 === 0;
+
+    if (randomResult === true) {
+      return "red";
+    } else {
+      return "black";
+    }
+  }
+
+  function roulette_wheel_results(number_of_roulette_wheel_spins) {
+    var rouletteResults = [];
+    for (let i = 0; i < number_of_roulette_wheel_spins; i += 1) {
+      var randomResult = randomRedOrBlack();
+      rouletteResults.push(randomRedOrBlack());
+    }
+
+    return rouletteResults
+  }
+
+  function mostCommonRepititiveResult(rouletteWheelSpins) {
+    var consecutiveCount = 0;
+    var maximumConsecutiveCount = 0;
+    var mostCommonColor = "";
+
+    for (let i = 0; i < rouletteWheelSpins.length; i += 1) {
+      var resultOfRouletteSpin = rouletteWheelSpins[i];
+      var pastResultOfRouletteSpin;
+
+      if (i > 0) {
+        pastResultOfRouletteSpin = rouletteWheelSpins[i - 1];
+      } else {
+        pastResultOfRouletteSpin = resultOfRouletteSpin;
+      }
+
+      if (pastResultOfRouletteSpin == "black" && resultOfRouletteSpin == "black") {
+        consecutiveCount += 1;
+      } else if (pastResultOfRouletteSpin == "red" && resultOfRouletteSpin == "red") {
+        consecutiveCount += 1;
+      } else if (pastResultOfRouletteSpin == "black" && resultOfRouletteSpin == "red") {
+        consecutiveCount = 1;
+      } else if (pastResultOfRouletteSpin == "red" && resultOfRouletteSpin == "black") {
+        consecutiveCount = 1;
+      }
+
+      if (consecutiveCount > maximumConsecutiveCount) {
+        mostCommonColor = resultOfRouletteSpin;
+        maximumConsecutiveCount = consecutiveCount;
+      }
+    }
+
+    return [maximumConsecutiveCount, mostCommonColor];
+  }
+
+
+  function handleAResultsRequest(numberOfSpinsDesired) {
+    var resultsArea = document.getElementById("roulette_wheel_results_area");
+    var numberOfSpins = numberOfSpinsDesired
+    var results = mostCommonRepititiveResult(roulette_wheel_results(numberOfSpins))
+    resultsArea.innerHTML = "<p>We spun the wheel " + numberOfSpins + " times.</p><p>The most consecutive result was " + results[1] + " which occured " + results[0] + " times.</p>";
+  }
+
+  function othername() {
+    var input = document.getElementById("userInput").value;
+    handleAResultsRequest(input)
+  }
+
+  var number_of_roulette_spins_desired = 5;
+  var rouletteWheelSpins = roulette_wheel_results(number_of_roulette_spins_desired);
+</script>
+
+<%= return_home_button %>
+<div class="container">
+  <h1>Consecutive Finder</h1>
+  <div class="row">
+    <div class="col-md-6">
+      <p>This tool can generate as many roulette wheels spins as you desire.</p>
+      <p>It is designed to tell you how many consecutive results occure in that batch of roulette spins.</p>
+      <p>For example, if you played 5 roulette spins and the results were black, red, red, red and black, you would have had a maximum consecutive red results of 3.</p>
+      <p>Enjoy!</p>
+      <form id="form" onsubmit="return false;">
+        <p>Input your desired spin count here (100 to 10 million is fine):</p>
+        <input type="text" id="userInput" />
+        <input type="submit" onclick="othername();" />
+        <p><em>Be careful because huge numbers can be a problem for your browser. It could crash if you go nuts.</em></p>
+      </form>
+      <div id="roulette_wheel_results_area">
+        <p>Click the results button first</p>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="youtube_embed">
+        <center>
+          <iframe width="560" height="315" src="https://www.youtube.com/embed/b0Wuy69LtJs" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </center>
+      </div>
+    </div>
+  </div>
+</div>

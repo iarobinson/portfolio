@@ -1,0 +1,25 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 offset-md-3">
+      <p id="notice"><%= notice %></p>
+
+      <p>
+        <strong>Result:</strong>
+        <%= @military_rank_test.result %>
+      </p>
+
+      <p>
+        <strong>User:</strong>
+        <%= @military_rank_test.user %>
+      </p>
+
+      <p>
+        <strong>Points:</strong>
+        <%= @military_rank_test.points %>
+      </p>
+
+      <%= link_to 'Edit', edit_military_rank_test_path(@military_rank_test), class: "btn btn-block btn-primary" %>
+      <%= link_to 'Back', military_rank_tests_path, class: "btn btn-block btn-primary" %>
+    </div>
+  </div>
+</div>

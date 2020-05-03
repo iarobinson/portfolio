@@ -1,10 +1,14 @@
-<div class="container-fluid">
-  <div class="row">
-    <div class="col-12 text-center">
-      <p>
-        You're logged in!
-        Logged in with email: <%= current_user.email %>.
-      </p>
-    </div>
-  </div>
-</div>
+<ul class="nav justify-content-end">
+  <li class="nav-item">
+    <%= link_to "Home", root_path, class: "nav-link" %>
+  </li>
+  <li class="nav-item">
+    <%= link_to "Users", users_path, class: "nav-link" %>
+  </li>
+  <li class="nav-item">
+    <%= link_to "Learn Military Ranks", military_rank_tests_path, class: "nav-link" %>
+  </li>
+  <li class="nav-item">
+    <div class="nav-link disabled">You're logged in!</div>
+  </li>
+</ul>

@@ -2,33 +2,7 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 p, body {
-  font-family: 'Source Serif Pro', serif;
-  font-size: 20px;
-  line-height: 1.4em;
-  color: #000
-}
-
-h1, h2, h3, h4, h5, ul {
-  font-family: 'Montserrat', sans-serif;
-  padding: 20px 20px 20px 20px;
-}
-
-h1 {
-  padding-top: 20px;
-  padding-bottom: 20px;
-}
-
-a img {
-  padding: 10px 10px 10px 10px;
-}
-
-.btn {
-  border-radius: 0;
-  text-transform: uppercase;
-}
-
-.btn-primary:hover {
-    color: #fff;
+  font-family: 'Verdana', serif;
 }
 
 .btn-twitter:hover {
@@ -87,17 +61,4 @@ a img {
 
 .btn-github {
   color: #333333;
-}
-
-.socialNav {
-    padding-top: 50px;
-    padding-bottom: 50px;
-}
-
-.gallery img:hover {
-    opacity: 0.4;
-}
-
-.navbar-default{
-  margin: 20px 40px 0px;
 }

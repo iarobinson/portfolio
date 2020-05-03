@@ -1,0 +1,27 @@
+<%= form_with(model: military_rank_test, local: true) do |form| %>
+  <% if military_rank_test.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(military_rank_test.errors.count, "error") %> prohibited this military_rank_test from being saved:</h2>
+
+      <ul>
+      <% military_rank_test.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= label :branch, "Select Branch to Test For:" %>
+    <%= select_tag(:branch, raw(
+        '<option value="all">All</option>
+        <option value="army">Army</option>
+        <option value="navy">Navy</option>
+        <option value="air_force">Air Force</option>'
+        ), class: "form-control") %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit "Start the Military Rank Test", class: "btn btn-block btn-primary my-3" %>
+  </div>
+<% end %>

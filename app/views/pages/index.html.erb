@@ -11,88 +11,22 @@
       <p>This is a collection of my favorite projects.
         These were created over the past few years of learning to code.
       </p>
-      <p>
-        Some projects work better for users who login in. If you want to see those projects, please
-        <%= link_to "sign in", new_user_session_path %> or
-        <%= link_to "sign up", new_user_registration_path %>.
-      </p>
+      <% if current_user.nil? %>
+        <p>
+          Some projects work better for users who login in. If you want to see those projects, please
+          <%= link_to "sign in", new_user_session_path %> or
+          <%= link_to "sign up", new_user_registration_path %>.
+        </p>
+      <% end %>
       <p>Please check out the thumbnails below to explore my work.</p>
     </div>
   </div>
 
-  <div class="row">
-    <h2>Projects:</h2>
-  </div>
-  <div class="row">
-    <div class="row centered mt mb">
-      <div class="col-md-4 col-sm-4 gallery">
-        <%= link_to quick_check_path do %>
-          <%= image_tag "project_thumbnails/wikipedia-quick-check-tool.jpg", class: "img-fluid" %>
-        <% end %>
-        <p>A tool for finding multiple related Wikipedia articles.</p>
-      </div>
-      <div class="col-md-4 col-sm-4 gallery">
-        <%= link_to random_quote_path do %>
-          <%= image_tag "project_thumbnails/tweet-generator.jpg", class: "img-fluid" %>
-        <% end %>
-        <p>A random quote generator for spamming Hack Reactor founders.</p>
-      </div>
-      <div class="col-md-4 col-sm-4 gallery">
-        <%= link_to calculator_path do %>
-          <%= image_tag "project_thumbnails/js-calculator.jpg", class: "img-fluid" %>
-        <% end %>
-        <p>A mobile responsive JavaScript calculator.</p>
-      </div>
-    </div>
-  </div>
 
-  <div class="row">
-    <div class="col-md-4 col-sm-4 gallery">
-      <%= link_to jockoclock_path do %>
-        <%= image_tag "project_thumbnails/jocko-clock.jpg", class: "img-fluid", alt: "A clock that gets Jocko Willink to help you stop procrastinating" %>
-      <% end %>
-      <p>Jocko Clock is a Pomodoro clock which helps you eliminate procrastination featuring the voice of Jocko Willink.</p>
-    </div>
-    <div class="col-md-4 col-sm-4 gallery">
-      <%= link_to heart_path do %>
-        <%= image_tag "project_thumbnails/heart.jpg", class: "img-fluid", alt: "A love heart in CSS" %>
-      <% end %>
-      <p>A throbbing heart.</p>
-    </div>
-    <div class="col-md-4 col-sm-4 gallery">
-      <%= link_to tick_tack_toe_path do %>
-        <%= image_tag "project_thumbnails/tic-toc-toe.jpg", class: "img-fluid", alt: "A simple Tic Tac Toe Game" %>
-      <% end %>
-      <p>This is just a simple game of Tic Tac Toe written in JavaScript, HTML and CSS.</p>
-    </div>
-  </div>
-
-  <div class="row">
-    <h2>External Links</h2>
-  </div>
-  <div class="row">
-    <div class="col-md-4 gallery">
-      <a href="https://www.freedompodcasting.com" target="_blank">
-        <%= image_tag "project_thumbnails/freedom-podcasting.png", class: "img-fluid", alt: "A Professional Podcast Production company" %>
-      </a>
-      <p>We are a company offering podcast production services to clients since 2011.</p>
-    </div>
-    <div class="col-md-4 gallery">
-      <%= link_to "https://www.ianrobinson.net", target: "_blank" do %>
-        <%= image_tag "project_thumbnails/personal-blog.png", class: "img-fluid", alt: "My personal blog - a study of art, enterprise and entrepreneurship." %>
-      <% end %>
-      <p>My personal blog with wide ranging topics from:</p>
-      <p><font size="3"><em>house building, learning to code, book notes, travel ideas, film making, cryptocurrency and much more.</em></font></p>
-    </div>
-    <div class="col-md-4 gallery">
-      <%= link_to "https://www.usefulprogrammer.org", target: "_blank" do %>
-        <%= image_tag "project_thumbnails/useful-programmer.jpg", class: "img-fluid", alt: "My personal blog - a study of art, enterprise and entrepreneurship." %>
-      <% end %>
-      <p>My personal blog with wide ranging topics from:</p>
-      <p><font size="3"><em>teaching early stage developers the basics of programatic thinking</em></font></p>
-    </div>
-  </div>
-
+  <% unless current_user.nil? %>
+    <%= render "pages/logged_in_user_projects" %>
+  <% end %>
+  <%= render "pages/project_rows" %>
+  <%= render "pages/external_projects" %>
   <%= render "layouts/social_media_buttons" %>
-
 </div>
